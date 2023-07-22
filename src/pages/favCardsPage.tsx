@@ -31,14 +31,13 @@ function FavCardsPage({background,color}:Props){
         )
         
         setSearchCards(updated);
-
+         setCards(updated);
         toast.success('Card has been deleted from favorite');
     }
       function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
         const value = e.target.value;
         setSearch(value);
         const normalizedValue = value.trim().toLowerCase();
-        console.log(normalizedValue)
         const updated = [...cards].filter(
             card =>card.title.toLowerCase().includes(normalizedValue)
         );
