@@ -1,13 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
-import { isBusiness, verifyToken } from "../auth/TokenManager";
+import { getAdmin, getBusiness, isAdmin, isBusiness, verifyToken } from "../auth/TokenManager";
 import Logout from "../auth/Logout";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Container, Nav, Navbar } from "react-bootstrap";
+import { useContext, useEffect, useState } from "react";
 interface Props {
     background: string;
 }
 function Header({background}:Props) {
     return (
+
         <>
          <Navbar bg={background==='black'?'dark':'primary'} data-bs-theme='dark' collapseOnSelect expand="lg" fixed="top">
       <Container>
@@ -21,10 +23,10 @@ function Header({background}:Props) {
             {verifyToken() && isBusiness()&&<NavLink className="nav-link" to="/mycards">My Cards</NavLink>}
           </Nav>
           <Nav>
-         {!verifyToken() &&<Nav.Link href="/signup">signup</Nav.Link>}
-        {!verifyToken() &&<Nav.Link eventKey={2} href="/login">
+         {!verifyToken() &&<NavLink className="nav-link" to="/signup">signup</NavLink>}
+        {!verifyToken() &&<NavLink className="nav-link" to="/login">
               Login
-            </Nav.Link>}
+            </NavLink>}
             {verifyToken() &&
           <NavDropdown title={<i className="bi bi-person-circle"></i>} id="basic-nav-dropdown">
              <Logout/>
