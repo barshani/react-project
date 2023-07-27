@@ -2,7 +2,7 @@ import {Card, Favorite} from "../pages/business/cards"
 import { getToken, isAdmin } from "../auth/TokenManager";
 import { User } from "../auth/SignUp";
 import { loginUser } from "../auth/login";
-const serverUrl = 'http://localhost:3000/';
+const serverUrl = 'http://localhost:3001/';
 
 const cardsUrl = `${serverUrl}cards/`;
 const usersUrl = `${serverUrl}users/`;
