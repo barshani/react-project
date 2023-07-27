@@ -15,13 +15,10 @@ import EditPage from './pages/editPage';
 import ViewPage from './pages/viewPage';
 import AboutPage from './pages/aboutPage';
 import RouteBusiness from './auth/RouteBusiness';
-interface Context{
-    search:string;
-    setSearch:Function;
-}
-export const AppContext = createContext<Context | null>(null);
+import { isBusiness, verifyToken } from './auth/TokenManager';
 function App() {
-   const [search, setSearch] = useState('');
+  const [loged,setLoged] = useState(verifyToken())
+  const [business,setBusiness] = useState(isBusiness())
    const [mainColor, setMainColor] = useState('#1F51FF');
    const [secondaryColor, setSecondaryColor] = useState('white');
    const [cardColor, setCardColor] = useState('white');
@@ -31,10 +28,6 @@ function App() {
        <Header
        background={mainColor}
        />
-     <AppContext.Provider value={{
-       search,
-       setSearch,
-      }}>
       <div className='main-div' style={{backgroundColor:secondaryColor,color:textColor}}>
        {mainColor=='#1F51FF' && <li className="nav-link">
                         <button
@@ -140,7 +133,6 @@ function App() {
       } />
     </Routes>
     </div>
-    </AppContext.Provider>
     <Footer
      background={mainColor==="#1F51FF"?"grey":"black"}
      color={textColor}
