@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card } from "./business/cards";
 import { verifyToken } from "../auth/TokenManager";
-import { hover } from "@testing-library/user-event/dist/hover";
 interface Props{
     background:string
     color:string
 }
 function AboutPage({background,color}:Props){
+     const navigate = useNavigate();
     const cards:Array<Card>=[{
         _id:"0",
         title:"google",
@@ -76,11 +76,19 @@ Google is so dominant that the term "Google" can also be used as a verb, so that
                    {!verifyToken()&& <p>
                      <p>sign now to watch our colection and choose your favorites</p>
                     <p>sign now as business and you can start creating your own business cards,</p>
-                        <a href="\signup" className="btn btn-outline btn-lg" style={{borderColor:color ,color:color}}>Lets Start</a>
+                        <button
+                         className="btn btn-outline btn-lg" 
+                         style={{borderColor:color ,color:color}}
+                         onClick={()=>navigate('/signup')}
+                         >Lets Start</button>
                     </p>}
                    {verifyToken()&& 
                    <p>
-                        <a href="\allcards" className="btn btn-outline btn-lg" style={{borderColor:color,color:color ,background:background}}>watch our collection</a>
+                        <button
+                         className="btn btn-outline btn-lg" 
+                         style={{borderColor:color,color:color ,background:background}}
+                         onClick={()=>navigate('/allcards')}
+                         >watch our collection</button>
                     </p>
                     }
                 </div>
