@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteCard, getMyCards } from "../services/apiService";
 import { Card } from "./business/cards";
 import Title from "../components/Title";
 import { getUserEmail } from "../auth/TokenManager";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import { AppContext } from "../App";
 interface Props{
     background:string
     color:string
