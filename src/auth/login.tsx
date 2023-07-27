@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import Title from "../components/Title";
 import { login, signup } from "../services/apiService";
-import {setUserEmail, setToken, setAdmin, setBusiness } from "./TokenManager";
+import {setUserEmail, setToken, setAdmin, setBusiness, isAdmin } from "./TokenManager";
 
 export interface loginUser {
     _id?: string;
@@ -60,10 +60,14 @@ function Login({background,color}:Props){
             .then((user) => {
                 setUserEmail(user.email)
                 setToken(user.token)
-                setAdmin(user.isAdmin===true? "yes":"no")
                 setBusiness(user.isBusiness===true? "yes":"no")
-                navigate('/')
-                window.location.reload();
+                setAdmin(user.isAdmin===true? "yes":"no")
+                if(user.isAdmin===true){
+                    setBusiness("yes")
+
+                }
+                navigate('/');
+                window.location.reload()
             }).catch(()=>setError('invalid password or email'))
         setEmail('')
         setPassword('')
