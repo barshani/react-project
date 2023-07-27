@@ -1,7 +1,7 @@
 const tokenKey = 'token';
 const emailKey='email';
-const adminKey='isAdmin'
-const businessKey='isBusiness'
+const adminKey='isAdmin';
+const businessKey='isBusiness';
 
 export function setToken(tokenValue?: string) {
     if (!tokenValue) return;
@@ -37,7 +37,7 @@ export function removeAdmin() {
     localStorage.removeItem(adminKey);
 }
 export function isAdmin(): boolean {
-    return getAdmin()=="yes";
+    return getAdmin()==="yes";
 }
 export function getBusiness(): string {
     return localStorage.getItem(businessKey) || '';
@@ -50,5 +50,5 @@ export function removeBusiness() {
     localStorage.removeItem(businessKey);
 }
 export function isBusiness(): boolean {
-    return getBusiness()=="yes";
+    return getBusiness()==="yes";
 }
